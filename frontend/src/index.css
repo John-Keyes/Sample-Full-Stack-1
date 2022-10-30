@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  background: #212;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: "100vw";
+  max-height: "100vh";
+}
+
+.custom-scrollbars__content {
+  /*Scrollable, but not seen at the top level*/
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.custom-scrollbars__content::-webkit-scrollbar {
+  display: none;
+}
+
+/*
+.custom-scrollbars__track-and-thumb {
+  display: block;
+  height: 100%;  
+  position: relative;
+  width: 16px; 
+}
+
+.custom-scrollbars__track {
+  bottom: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  width: 16px; 
+}
+
+
+.custom-scrollbars__thumb {
+  position: absolute;
+  width: 16px; 
+}
+*/
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/*[contentEditable]:empty:not(:focus):before {
+  content: attr(data-text);
+}*/
+
+.buttonText {
+  font-weight: bold;
+  padding: 5;
+  font-size: 1em;
+}
+
+.formContainer {
+  padding: 1em;
+  background: #444;
+}
+
+.formInputContainer {
+  background: #444;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  margin-right: 15%;
+  margin-left: 15%;
+}
+.formLabel {
+  font-weight: bold;
+  font-size: 1.05em;
+}
+.formInput {
+  background: #444;
+  border: none;
+  color: #fff;
+  margin-left: 2%;
+  width: 90%;
+  overflow: hidden;  /*Text doesn't go past the border*/
+  white-space: nowrap; /*Single Line*/
+}
+.formInput:focus {
+  outline: none;
+}
+
+.underlineBorder {
+  border-bottom: 0.15em solid #fff;
+}
+.roundBorder {
+  border: 0.15em solid #fff;
+  padding: 0.75em;
+  border-radius: 0.75em;
+}
+
+.feedBack {
+  margin-top: 5; 
+  font-size: 13; 
+  color: "red";
+}

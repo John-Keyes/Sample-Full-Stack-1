@@ -13,7 +13,7 @@ BEGIN
         END
     ELSE 
         BEGIN
-            SET @insertQuery = CONCAT("INSERT INTO ",  table_Name, " (studentID,", attribute, ") VALUES (", studentID, ", ", attributeVal, ");");
+            SET @insertQuery = CONCAT("INSERT INTO ",  table_Name, " VALUES (", studentID, ", ", attributeVal, ");");
             PREPARE insertStmt FROM @insertQuery;
             EXECUTE insertStmt;
             DEALLOCATE PREPARE insertStmt;

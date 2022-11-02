@@ -37,9 +37,9 @@ module.exports = {
     let aHash = hashSync(req.body.password, genSaltSync(10));
     req.body.password = aHash + aHash;
     //SELECT studentID FROM Students WHERE email='${req.body.email}'; 
-    const studentIDRes = await db.promise().query(`INSERT INTO Students(studentID, country, state, city, company, email, password, firstName, lastName, average, pic, isAdmin) OUTPUT Inserted.studentID VALUES (DEFAULT, NULL, NULL, NULL, NULL, ${req.body.email}, ${req.body.password}, ${req.body.firstName}, ${req.body.lastName}, NULL, NULL, ${isAdmin})`)
+    const studentIDRes = await db.promise().query(`INSERT INTO Students(studentID, email, password, firstName, lastName, isAdmin) OUTPUT Inserted.studentID VALUES (DEFAULT, ${req.body.email}, ${req.body.password}, ${req.body.firstName}, ${req.body.lastName}, ${isAdmin})`)
     .catch(() => res.status(500).json({message: "Error 500: Internal Server Error."}));
-    return res.status(200).json({studentID: studentIDRes[0].studentID})
+    return res.status(200).json({studentID: studentIDRes[0].studentID});
     //const studentIDRes = await db.promise().query("SELECT studentID FROM Students");
   },
   login: async (req, res) => {

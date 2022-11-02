@@ -3,19 +3,22 @@ import React, {useState} from 'react';
 import Button from './Button';
 import CustomTextInput from './CustomTextInput';
 import {AddFeedBack} from '../Global/Feedback';
-import {SignIn} from '../Redux/actions';
+import {SaveProfile} from '../Redux/actions';
+import store from '../Redux/store';
+
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [secureTextEntry, setSecureTextEntry] = useState("");
+    const [secureTextEntry, setSecureTextEntry] = useState(true);
     const [errors, setErrors] = useState([]);
     //const [userName, setUserName] = useState({val: ""});
 
     return (
         <div className="formContainer">
             <CustomTextInput 
-                borderType={'u'} 
+                borderType={'u'}
+                inputType={"email"} 
                 id={"login_Email"}
                 title={"Email"} 
                 placeholder={"Your Email"}
@@ -38,7 +41,7 @@ const Login = () => {
                     </svg>
                 }
             />
-            <Button additionalButtonStyles={{backgroundColor: "blue"}} toggle={() => SignIn({email: email, password: password}, setErrors)}>
+            <Button additionalButtonStyles={{backgroundColor: "blue"}} toggle={() => SaveProfile("GET", `login/${store.getState().payload.studentID}`, {email: email, password: password}, setErrors)}>
                 <span className="buttonText">Sign In</span>
             </Button>
         </div>

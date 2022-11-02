@@ -1,17 +1,25 @@
 import React, {useState} from 'react';
 import {AddFeedBack} from '../Global/Feedback';
+import { Country, State, City }  from 'country-state-city';
 import CustomTextInput from './CustomTextInput';
 import Button from './Button';
-import {UpdateProfile} from '../Redux/actions';
+import {SaveProfile} from '../Redux/actions';
+import store from '../Redux/store';
 
 const ProfileSettings = () => {
-    const [city, setCity] = useState("");
-    const [company, setCompany] = useState("");
-    const [pic, setPic] = useState("");
+    const payload = store.getState().payload;
+    const [countries, setCountries] = useState(Country.getAllCountries());
+    const [states, setStates] = useState(State.getAllStates());
+    const [cities, setCities] = useState(City.getAllCities());
+    const [currentCountry, setCurrentCountry] = useState(payload.country);
+    const [currentState, setCurrentState] = useState(payload.state);
+    const [currentCity, setCurrentCity] = useState(payload.city);
+    const [company, setCompany] = useState(payload.company);
+    const [pic, setPic] = useState(payload.pic);
     const [picFormat, setPicFormat] = useState(true);
-    const [skills, setSkills] = useState([]);
+    const [skills, setSkills] = useState(payload.skills);
     const [currentSkill, setCurrentSkill] = useState("");
-    const [grades, setGrades] = useState([]);
+    const [grades, setGrades] = useState(payload.grades);
     const [currentGrade, setCurrentGrade] = useState("");
     const [errors, setErrors] = useState({});
 
@@ -46,15 +54,15 @@ const ProfileSettings = () => {
         <div className="formContainer">
             <CustomTextInput 
                 borderType={'u'} 
-                id={"register_City"}
+                id={"update_City"}
                 title={"City"} 
                 placeholder={"Your City"}
-                value={city} 
-                setValue={setCity}
+                value={currentCity} 
+                setValue={setCurrentCity}
             />
             <CustomTextInput 
                 borderType={'u'} 
-                id={"register_Company"}
+                id={"update_Company"}
                 title={"Company"} 
                 placeholder={"Your Company"}
                 value={company} 
@@ -63,7 +71,7 @@ const ProfileSettings = () => {
             <CustomTextInput 
                 borderType={'u'} 
                 inputType={picFormat ? "url" : "file"}
-                id={"register_pic"}
+                id={"update_pic"}
                 title={"Your profile picture"} 
                 placeholder={"Paste a URL or "}
                 value={pic} 
@@ -73,7 +81,7 @@ const ProfileSettings = () => {
             />
             <CustomTextInput
                 borderType={'u'} 
-                id={"register_skills"}
+                id={"update_skills"}
                 title={"Skills"} 
                 placeholder={"Your Skills"}
                 value={currentSkill} 
@@ -84,7 +92,7 @@ const ProfileSettings = () => {
             />
             <CustomTextInput
                 borderType={'u'} 
-                id={"register_grades"}
+                id={"update_grades"}
                 title={"Grades"} 
                 placeholder={"Your Grades"}
                 value={currentGrade} 
@@ -93,7 +101,7 @@ const ProfileSettings = () => {
                 left={grades.map(grade => <Button><span className="buttonText">{grade}</span></Button>)}
                 right={() => <svg xmlns="http://www.w3.org/2000/svg" onClick={AddGrade()} height="20" width="20"><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z"/></svg>}
             />
-            <Button additionalButtonStyles={{backgroundColor: "blue"}} toggle={() => UpdateProfile({city: city, company: company, grades: grades, skills: skills, pic: pic}, setErrors)}>
+            <Button additionalButtonStyles={{backgroundColor: "blue"}} toggle={() => SaveProfile("PUT", `update/${payload.studentID}`, {country: currentCountry, state: currentState, city: currentCity, company: company, grades: grades, skills: skills}, setErrors)}>
                 <span className="buttonText">Save</span>
             </Button>
         </div>

@@ -7,7 +7,8 @@ const initialPayload = {
     average: 0,
     grades: [],
     pic: "",
-    skill: ""
+    skills: [],
+    isAdmin: 'F'
 }
 
 export const Authorization = (action, payload = initialPayload) => {

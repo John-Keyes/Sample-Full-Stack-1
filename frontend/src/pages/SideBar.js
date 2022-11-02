@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import {Outlet, Link} from 'react-router-dom'; 
 import Button from '../components/Button';
+//import store from './store';
+//import {getToken} from '../Global/Token';
 
 const SideBar = () => {
+    //const token = getToken();
+	//const isAdmin = store.getState().payload.isAdmin;
     const [activeScreen, setActiveScreen] = useState("Home");
     const [dropDownOpen, setDropDownOpen] = useState(false);
     return (
@@ -11,6 +15,16 @@ const SideBar = () => {
                 <Button additionalButtonStyles={styles.additionalButtonStyles} toggle={() => setDropDownOpen(!dropDownOpen)}><span className="buttonText">{activeScreen}</span></Button>
                 <section style={{...styles.dropdownContainer, display: dropDownOpen ? "flex" : "none"}}>
                     <Link to="/" onClick={() => setActiveScreen("Home")}>Home</Link>
+                    {/*token ?
+						<div>
+							{isAdmin == 'T' ?
+							<Link to="/Filters" element = {<Filters classInfo={classInfo}/>}/>
+							:<Link to="/Profile" element = {Profile}/>
+							}
+						</div>
+						: <Link to="/Auth" element = {Auth}/>
+					*/}
+                    <Link to="/Profile" onClick={() => setActiveScreen("Profile")}>Profile</Link>
                     <Link to="/Filters" onClick={() => setActiveScreen("Filters")}>Filters</Link>
 					<Link to="/Auth" onClick={() => setActiveScreen("Auth")}>Auth</Link>
 					<Link to="/NoPage" onClick={() => setActiveScreen("NoPage")}>NoPage</Link>

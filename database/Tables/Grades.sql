@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `Grades`;
 CREATE TABLE `Grades` (
 	`studentID` INT UNSIGNED NOT NULL,
 	`grade` INT(3) NOT NULL,

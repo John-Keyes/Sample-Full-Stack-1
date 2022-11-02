@@ -1,66 +1,66 @@
-import { getToken, setToken } from "../Global/Token";
-import { Authorization } from "./reducer";
+import {getToken, setToken} from "../Global/Token";
+import {Authorization} from "./reducer";
+
 
 const LOGGEDIN = "LOGGEDIN";
 const LOGGEDOUT = "LOGGEDOUT";
 
-
-export const SignIn = async (bodyObject, setErrors) => {
-        const token = getToken();
-        await fetch(`${process.env.HOST}/students/register`, {
-            method: "POST", 
-            headers: {"Authorization": `Bearer ${token}`, "Content-Type": "application/json"},
-            body: JSON.stringify(bodyObject),
-        }).then(res => {
-            if(res.status != 200) {
-                if(res.errors?.other) {
-                    alert(res.errors.other);
-                    res.errors.other = undefined;
-                }
-                setErrors(res.errors);
-                return false;
-            }
-            setToken(res.data.token);
-            Authorization(LOGGEDIN, res.data.students);
-            window.location.href = "/Home";
-        }).catch(() => {alert("Cannot connect to the server."); return false;});
-    }
-
     export const SignUp = async (bodyObject, setErrors) => {
-        await fetch(`${process.env.HOST}/students/register`, {
+        await fetch(`${HOST}/students/register`, {
             method: "POST", 
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(bodyObject)
         }).then(res => {
             if(res.status != 200) {
-                if(res.errors?.other) {
-                    alert(res.errors.other);
-                    res.errors.other = undefined;
-                }
-                setErrors(res.errors);
+                alert(res.error);
+                setErrors(res.error);
                 return false;
             }
-            Authorization(LOGGEDOUT, res.data);
-            window.location.href = "/Home";
+            Authorization(LOGGEDOUT, {studentID: res.data});
+            window.location.href = "/";
         }).catch(() => {alert("Cannot connect to the server."); return false;});
     }
 
-    export const UpdateProfile = async (bodyObject, setErrors) => {
-        const token = getToken();
-        await fetch(`${process.env.HOST}/students/update`, {
-            method: "PUT", 
-            headers: {"Authorization": `Bearer ${token}`, "Content-Type": "application/json"},
-            body: JSON.stringify(bodyObject)
+    export const SignInOnMount = (setClassInfo) => {
+        fetch(`${HOST}/students/loginOnMount`, {
+            method:"GET",
         }).then(res => {
             if(res.status != 200) {
-                if(res.errors?.other) {
-                    alert(res.errors.other);
-                    res.errors.other = undefined;
-                }
-                setErrors(res.errors);
-                return false;
+                alert(res.errors);
+                window.location.href = "/home";
             }
-            Authorization(LOGGEDIN, res.data);
-            window.location.href = "/Home";
+            setClassInfo(res.data);
+        });
+    }
+
+    export const SaveProfile = async (theMethod, endPoint, bodyObject, setErrors) => {
+        const token = getToken();
+        //let studentID = store.getState().payload.studentID
+        await fetch(`${HOST}/students/${endPoint}`, {
+            method: theMethod, 
+            headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
+            body: JSON.stringify(bodyObject)
+        }).then(res => {
+            switch(res.status) {
+                case 200:
+                    setToken(res.data.token);
+                    Authorization(LOGGEDIN, res.data.students);
+                    window.location.href = "/";
+                    break;
+                case 410:
+                    alert(res.error);
+                    setErrors({email: res.error});
+                    return false;
+                case 415:
+                    alert(res.error);
+                    setErrors({password: res.error});
+                    return false;
+                default:
+                    Authorization(LOGGEDOUT);
+                case 420:
+                    alert(res.error);
+                    setErrors({other: res.error});
+                    return false;
+            }
         }).catch(() => {alert("Cannot connect to the server."); return false;});
     }

@@ -1,5 +1,5 @@
 # Sample-Full-Stack-1
-  - Full Stack Personal Project I am working on that is just supposed to be a showcase of what I know how to use.
+  - Full Stack Personal Project I am working on that is just supposed to be a showcase of my expertise.
 
 # Frameworks
   - React

@@ -1,33 +1,33 @@
 
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 //path is a node native utility module: https://nodejs.org/api/path.html 
 module.exports = (env) => {
     return {
         entry: path.join(__dirname, "src", "index.js"),
-        mode: "development",
         devtool: "inline-source-map",
         output: {
-            path: path.resolve(__dirname, "dist")
+          path: path.resolve(__dirname, "dist")
         },
         devServer: {
-            compress: true,
-            port: 8084,
+          compress: true,
+          port: 3030,
         },
         /*resolver: {
             extensions: ['jsx', 'js', 'ts', 'tsx']
-            test: /\.?(js|jsx|ts|tsx)$/, /\.?(js)$/,
+            test: /\.?(js|jsx|ts|tsx)$/, /\.?(js)$/, (j|t)(s|sx)
         },*/
         module: {
             rules: [
               {
-                test: /\.?(js|jsx|ts|tsx)$/,
+                test: /\.?((j|t)(s|sx))$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react']
-                    }
+                  loader: "babel-loader",
+                  options: {
+                    presets: ['@babel/preset-env', '@babel/preset-react']
+                  }
                 }
               },
               //css
@@ -48,7 +48,8 @@ module.exports = (env) => {
             ]
         },
         plugins: [
-            new webpack.DefinePlugin({"HOST": JSON.stringify(env.HOST)})
+          new webpack.DefinePlugin({"HOST": JSON.stringify(env.HOST)}),
+          new HtmlWebpackPlugin({template: './public/index.html',manifest: './public/manifest.json'})
         ]
     };
 }

@@ -7,7 +7,19 @@ import SideBar from '../pages/SideBar';
 import Auth from '../pages/Auth';
 import Profile from '../pages/Profile';
 //import store from './store';
-//import {getToken} from '../Global/Token';
+//import {getToken, deleteToken} from '../Global/Token';
+
+// Use this function when login is finished.
+/*const ConfirmLogout = () => {
+	if(token) {
+		let userChoice = confirm("Are you sure you want to logout?");
+		if(userChoice) {
+			deleteToken();
+		}
+		return false;
+	}
+	return Auth;
+}*/
 
 const Router = ({classInfo}) => {
 	//const token = getToken();
@@ -18,14 +30,13 @@ const Router = ({classInfo}) => {
 			<Routes>
 				<Route path="/" element={SideBar}>
 					<Route index path="/Home" element = {Home}/>
-					{/*token ?
+					{/*
 						<div>
 							{isAdmin == 'T' ?
 							<Route path="Filters" element = {<Filters classInfo={classInfo}/>}/>
 							:<Route path="Profile" element = {Profile}/>
 							}
 						</div>
-						: <Route path="" element = {Auth}/>
 					*/}
 					<Route path="Auth" element = {Auth}/>
 					<Route path="Filters" element = {<Filters classInfo={classInfo}/>}/>

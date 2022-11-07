@@ -1,21 +1,31 @@
 import React, {useState} from 'react';
-//import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AddFeedBack} from '../Global/Feedback';
 import {SignUp} from '..//Redux/actions';
 import CustomTextInput from './CustomTextInput';
 import Button from './Button';
+import {useNavigate} from 'react-router-dom';
 
 //Put asterick next to required fields.
 
 const Register = () => {
+    const dispatch = useDispatch();
+    const {loading, errors} = useSelector(state => state.user);
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [secureTextEntry, setSecureTextEntry] = useState(true);
-    const [errors, setErrors] = useState({});
+    //const [errors, setErrors] = useState({});
     const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
+    const SubmitRegistration = () => {
+        if(!loading) { 
+            dispatch(SignUp({firstName: firstName, lastName: lastName, email: email.toLowerCase(), passsword: password}));
+            navigate("/Auth");
+        }
+    }
     return (
         <div className="formContainer">
             <CustomTextInput 
@@ -60,7 +70,7 @@ const Register = () => {
                     </svg>
                 }
             />
-            <Button additionalButtonStyles={{backgroundColor: "blue"}} toggle={() =>SignUp({firstName: firstName, lastName: lastName, email: email, passsword: password}, setErrors)}>
+            <Button additionalButtonStyles={{backgroundColor: "blue"}} toggle={() => SubmitRegistration()}>
                 <span className="buttonText">Sign Up</span>
             </Button>
         </div>

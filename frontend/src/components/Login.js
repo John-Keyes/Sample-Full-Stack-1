@@ -1,18 +1,28 @@
 import React, {useState} from 'react';
-//import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Button from './Button';
 import CustomTextInput from './CustomTextInput';
 import {AddFeedBack} from '../Global/Feedback';
 import {SaveProfile} from '../Redux/actions';
 import store from '../Redux/store';
+import {useNavigate} from 'react-router-dom';
 
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const {loading, errors} = useSelector(state => state.user);
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [secureTextEntry, setSecureTextEntry] = useState(true);
-    const [errors, setErrors] = useState([]);
+    //const [errors, setErrors] = useState([]);
     //const [userName, setUserName] = useState({val: ""});
+    const SubmitLogin = () => {
+        if(!loading) {
+            dispatch(SaveProfile("GET", `login/${store.getState().payload.studentID}`, {email: email.toLowerCase(), password: password}))
+            navigate("/");
+        }
+    }
 
     return (
         <div className="formContainer">
@@ -41,7 +51,7 @@ const Login = () => {
                     </svg>
                 }
             />
-            <Button additionalButtonStyles={{backgroundColor: "blue"}} toggle={() => SaveProfile("GET", `login/${store.getState().payload.studentID}`, {email: email, password: password}, setErrors)}>
+            <Button additionalButtonStyles={{backgroundColor: "blue"}} toggle={() => SubmitLogin()}>
                 <span className="buttonText">Sign In</span>
             </Button>
         </div>

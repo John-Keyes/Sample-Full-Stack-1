@@ -5,7 +5,7 @@ const {UpdateSetBody} = require("../Helpers/auth");
 
 module.exports = {
   checkToken: (req, res, next) => {
-    let token = req.headers["Authorization"]
+    let token = req.headers["Authorization"];
     if (token) {
       // Extract the actual token
       token = token.slice(6);
@@ -43,7 +43,7 @@ module.exports = {
     //const studentIDRes = await db.promise().query("SELECT studentID FROM Students");
   },
   login: async (req, res) => {
-    let student = await db.promise().query(`SELECT * FROM Students WHERE email='${req.body.email}'`)
+    let student = await db.promise().query(`SELECT * EXCEPT password FROM Students WHERE email='${req.body.email}'`)
     .catch(() => res.status(500).json({message: "Error 500: Internal Server Error."}));
     if(!student[0]) {
       return res.status(410).json({message: "Error 410: Invalid email"});
@@ -51,7 +51,6 @@ module.exports = {
     if(!compareSync(req.body.password, student[0].password)) {
       return res.status(415).json({message: " Error 415: Invalid password"});
     }
-    student[0].password = undefined;
     const jwt = sign({student: student[0]}, process.env.token_Key, {algorithm: "HS256", expiresIn: "2h"});
     return res.status(200).json({data: jwt});
     /*if (compareSync(req.body.password, student[0].password) && student[0]) {

@@ -1,9 +1,18 @@
 const {Average} = require("./calculations.js");
 module.exports = {
     UpdateListTable: async (array, tableName, attribute, studentID) => {
-        await Promise.all(array.map(async element => {
-          await db.promise().query(`Call StudentHasThis(${tableName}, ${attribute}, ${studentID}, ${element})`);
-        })).catch(() => res.status(500).json({message: "Error 500: Internal Server Error."}));
+        const getAttributesofID = await db.promise().query(`SELECT ${attribute} FROM ${tableName} WHERE studentID='${studentID}'`);
+        const attributesOfID = await Promise.all(getAttributesofID.map(async student => {
+          if(!array.includes(student[attribute])) {
+            return student[attribute];
+          }
+          else {
+            await db.promise().query(`UPDATE ${tableName} SET ${attribute} = null WHERE ${attribute}='${student[attribute]}'`)
+            .catch(() => res.status(500).json({message: "Error 500: Internal Server Error."}));
+          }
+        }));
+        await Promise.all(attributesOfID.map(async element => await db.promise().query(`Call StudentHasThis(${tableName}, ${attribute}, ${studentID}, ${element})`)))
+        .catch(() => res.status(500).json({message: "Error 500: Internal Server Error."}));
     },
     UpdateSetBody: (body, studentID, average, updateQueryChangedVars) => {
         //Frontend only sends the changed keys

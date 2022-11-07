@@ -10,10 +10,6 @@ const studentRouter = require("./api/routes/students");
 //Cross-Origin
 //app.use(cors());
 
-// set port, listen for requests
-
-// const Port = process.env.port; // with the actual database
-
 app.listen(process.env.api_Port);
 
 // Json Parser
@@ -23,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 // home 
 app.use("/students", studentRouter);
 
-app.use("*", (req, res) => res.status(404).json({message: "Create page not found thing."}));
+app.use("*", (req, res) => res.status(404).json({message: "Request not found thing."}));
 
 
 

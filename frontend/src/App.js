@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Filters from './pages/Filters.js';
+import Router from './components/Router';
 
 const App = () => {
   const [classInfo, setClassInfo] = useState([]);
@@ -40,7 +40,7 @@ const App = () => {
             setClassInfo(cInfo);
         });
     }, []);
-  return <Filters classInfo={classInfo}/>;
+  return <Router classInfo={classInfo}/>;
 }
 
 export default App;

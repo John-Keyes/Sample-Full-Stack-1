@@ -1,5 +1,4 @@
-import {Authorization} from "./reducer";
-//import {applyMiddleware, combineReducers} from 'redux';
+import Authorization from "./reducer";
 import {configureStore} from '@reduxjs/toolkit';
 
 
@@ -9,7 +8,7 @@ Configure Store already uses redux-thunk which allows you to return functions, r
 within Redux. This allows for asynchronous actions, including working with promises.
 */
 const store = configureStore({
-    reducers: {
+    reducer: {
         auth: Authorization
     }
 });

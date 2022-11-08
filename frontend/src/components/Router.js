@@ -28,8 +28,8 @@ const Router = ({classInfo}) => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={SideBar}>
-					<Route index path="/Home" element = {Home}/>
+				<Route path="/" element={<SideBar/>}>
+					<Route index element = {<Home/>}/>
 					{/*
 						<div>
 							{isAdmin == 'T' ?
@@ -38,10 +38,10 @@ const Router = ({classInfo}) => {
 							}
 						</div>
 					*/}
-					<Route path="Auth" element = {Auth}/>
+					<Route path="Auth" element = {<Auth/>}/>
 					<Route path="Filters" element = {<Filters classInfo={classInfo}/>}/>
-					<Route path="Profile" element = {Profile}/>
-					<Route path="NoPage" element = {NoPage}/>
+					<Route path="Profile" element = {<Profile/>}/>
+					<Route path="NoPage" element = {<NoPage/>}/>
 				</Route>
 			</Routes>
 		</BrowserRouter>

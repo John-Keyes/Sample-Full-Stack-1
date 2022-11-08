@@ -1,7 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {deleteToken} from '../Global/Token';
 import {SignUp, SaveProfile} from './actions';
 
-/*const initialPayload = {
+/*const initialState = {
     studentID: -1,
     city: "",
     country: "",
@@ -18,11 +19,17 @@ import {SignUp, SaveProfile} from './actions';
     return {action: action, payload: payload};
 }*/
 
+const initialState = {authInfo: null, error: null, loading: false, success: false};
 
-export const Authorization = createSlice({
+const Authorization = createSlice({
     name: "auth",
-    initialState: {authInfo: null, error: null, loading: false, success: false},
-    reducers: {},
+    initialState: initialState,
+    reducers: {
+        logout: state => {
+            state = initialState;
+            deleteToken();
+        }
+    },
     extraReducers: {
         /*
             Actions created with createAsyncThunk generate three 
@@ -53,4 +60,4 @@ export const Authorization = createSlice({
     }
 });
 
-
+export default Authorization.reducer;

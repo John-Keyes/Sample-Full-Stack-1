@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import StudentCard from '../components/studentcard.js';
 import CustomTextInput from '../components/CustomTextInput.js';
 import FlatList from 'flatlist-react';
-import {GlobalStyles} from '../Global/GlobalStyles.js';
+import GlobalStyles from '../Global/GlobalStyles.js';
 //import {APICall} from '../Global/APICall.js';
 //import {useQuery} from 'react-query';
 

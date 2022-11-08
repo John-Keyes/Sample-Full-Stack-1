@@ -1,4 +1,4 @@
-export const GlobalStyles = {
+const GlobalStyles = {
     contentContainer: {
         justifyContent: "center",
         //maxWidth: "100vw",
@@ -30,3 +30,4 @@ export const GlobalStyles = {
         //overflowY: "auto"
     }
 }
+export default GlobalStyles;

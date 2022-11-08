@@ -48,6 +48,7 @@ const Register = () => {
             />
             <CustomTextInput 
                 borderType={'u'} 
+                inputType={"email"}
                 id={"register_Email"}
                 title={"Email"} 
                 placeholder={"A Email"}

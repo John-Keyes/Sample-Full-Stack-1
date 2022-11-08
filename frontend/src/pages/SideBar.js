@@ -45,7 +45,7 @@ const styles = {
 	nav: {
 		display: "flex",
 		flexDirection: "row",
-		backgroundColor: "#040747",
+		backgroundColor: "#444",
 		borderBottom: "0.15em solid #fff",
 		fontWeight: "300"
 	},

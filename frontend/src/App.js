@@ -10,7 +10,6 @@ const App = () => {
         }).then(res => {
             if(res.status != 200) {
                 alert(res.errors);
-                window.location.href = "/home";
             }
             setClassInfo(res.data);
         });
@@ -21,13 +20,12 @@ const App = () => {
         }).then(res => {
             if(res.status != 200) {
                 alert(res.errors);
-                window.location.href = "/Filters";
             }
             setClassInfo(res.data);
         });
         */
         
-        fetch('https://api.hatchways.io/assessment/students', {
+        fetch("https://api.hatchways.io/assessment/students", {
             method:"GET"
         }).then(response => response.json()).then(resData => {
             let cInfo = [];

@@ -22,7 +22,6 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
         }).then(res => {
             if(res.status != 200) {
                 alert(res.errors);
-                window.location.href = "/home";
             }
             setClassInfo(res.data);
         });

@@ -3,12 +3,12 @@ import React, {useState} from 'react';
 import StudentCard from '../components/studentcard.js';
 import CustomTextInput from '../components/CustomTextInput.js';
 import FlatList from 'flatlist-react';
-import GlobalStyles from '../Global/GlobalStyles.js';
+import GlobalStyles from '../Styles/GlobalStyles.js';
 //import {APICall} from '../Global/APICall.js';
 //import {useQuery} from 'react-query';
 
 
-const Filters = ({classInfo}) => {
+const StudentList = ({classInfo}) => {
     const [name, setName] = useState("");
     const [conditionType, setConditionType] = useState(0);
     //const [tag, setTag] = useState("");
@@ -41,4 +41,4 @@ const Filters = ({classInfo}) => {
     );
 }
 
-export default Filters;
+export default StudentList;

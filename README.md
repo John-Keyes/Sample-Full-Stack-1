@@ -3,18 +3,26 @@
 
 # Frameworks
   - React
+  - Redux
   - Node
  
 # RDMS
   - MySQL
   
 # Testing
-  -Jest
+  - Jest
   
 # Production and Development tools
   - webpack
   - docker
-  - vercel
+
+# Attributions
+  - logo.png from wix
+  
+  
+
+
+  
 
 
 

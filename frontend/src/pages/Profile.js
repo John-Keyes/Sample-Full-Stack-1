@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfileSettings from '../components/ProfileSettings';
-import GlobalStyles from '../Global/GlobalStyles';
+import GlobalStyles from '../Styles/GlobalStyles';
 
 const Profile = () => {
     return (

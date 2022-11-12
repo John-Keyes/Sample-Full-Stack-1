@@ -8,7 +8,9 @@ module.exports = (env) => {
         entry: path.join(__dirname, "src", "index.js"),
         devtool: "inline-source-map",
         output: {
-          path: path.resolve(__dirname, "dist")
+          path: path.resolve(__dirname, "dist"),
+          filename: 'AppOut.js',
+          publicPath: "/"
         },
         devServer: {
           compress: true,
@@ -26,7 +28,7 @@ module.exports = (env) => {
                 use: {
                   loader: "babel-loader",
                   options: {
-                    presets: ['@babel/preset-env', '@babel/preset-react']
+                    presets: ["@babel/preset-env", "@babel/preset-react"]
                   }
                 }
               },
@@ -37,19 +39,21 @@ module.exports = (env) => {
               },
               //images to load
               {
-                test: /\.(png|jp(e*)g|svg|gif)$/,
-                use: ['file-loader']
+                test: /\.(png|jp(e*)g|svg|gif)$/, 
+                type: "asset/resource",
+                options: {limit: 8192}
+                //use: "file-loader?name=./images/"
               },
               //svg as component
               {
                 test: /\.svg$/,
-                use: ['@svgr/webpack']
+                use: "@svgr/webpack"
               },
             ]
         },
         plugins: [
           new webpack.DefinePlugin({"HOST": JSON.stringify(env.HOST)}),
-          new HtmlWebpackPlugin({template: './public/index.html',manifest: './public/manifest.json'})
+          new HtmlWebpackPlugin({template: "./public/index.html", manifest: "./public/manifest.json"})
         ]
     };
 }

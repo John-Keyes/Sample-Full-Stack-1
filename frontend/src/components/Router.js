@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Filters from '../pages/Filters';
+import StudentList from '../pages/StudentList';
 import Home from '../pages/Home';
 import NoPage from '../pages/NoPage';
 import SideBar from '../pages/SideBar';
@@ -33,15 +33,15 @@ const Router = ({classInfo}) => {
 					{/*
 						<div>
 							{isAdmin == 'T' ?
-							<Route path="Filters" element = {<Filters classInfo={classInfo}/>}/>
+							<Route path="StudentList" element = {<StudentList classInfo={classInfo}/>}/>
 							:<Route path="Profile" element = {Profile}/>
 							}
 						</div>
 					*/}
 					<Route path="Auth" element = {<Auth/>}/>
-					<Route path="Filters" element = {<Filters classInfo={classInfo}/>}/>
+					<Route path="StudentList" element = {<StudentList classInfo={classInfo}/>}/>
 					<Route path="Profile" element = {<Profile/>}/>
-					<Route path="NoPage" element = {<NoPage/>}/>
+					<Route path="*" element = {<NoPage/>}/>
 				</Route>
 			</Routes>
 		</BrowserRouter>

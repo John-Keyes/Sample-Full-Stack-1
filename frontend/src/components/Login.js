@@ -10,7 +10,7 @@ import {useNavigate} from 'react-router-dom';
 
 const Login = () => {
     const dispatch = useDispatch();
-    const {loading, errors} = useSelector(state => state.user);
+    const {isLoading, errors} = useSelector(state => state.user);
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,7 +18,7 @@ const Login = () => {
     //const [errors, setErrors] = useState([]);
     //const [userName, setUserName] = useState({val: ""});
     const SubmitLogin = () => {
-        if(!loading) {
+        if(!isLoading) {
             dispatch(SaveProfile("GET", `login/${store.getState().payload.studentID}`, {email: email.toLowerCase(), password: password}))
             navigate("/");
         }

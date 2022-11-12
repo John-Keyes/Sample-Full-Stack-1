@@ -1,38 +1,37 @@
 import React, {useState} from 'react';
 import {Outlet, Link} from 'react-router-dom'; 
-import Button from '../components/Button';
+import Logo from '../images/logo.png';
+import "../Styles/pages/SideBar.css";
+import {useSelector} from 'react-redux';
 //import store from './store';
 //import {getToken} from '../Global/Token';
 
 const SideBar = () => {
     //const token = getToken();
 	//const isAdmin = store.getState().payload.isAdmin;
-    const [activeScreen, setActiveScreen] = useState("Home");
+    //const {authInfo} = useSelector(state => state);
+    //console.log(authInfo);
     const [dropDownOpen, setDropDownOpen] = useState(false);
+    
+    //style = {styles.img}
     return (
         <>
-            <nav style = {styles.nav}>
-                <Button additionalButtonStyles={styles.additionalButtonStyles} toggle={() => setDropDownOpen(!dropDownOpen)}><span className="buttonText">{activeScreen}</span></Button>
-                <section style={{...styles.dropdownContainer, display: dropDownOpen ? "flex" : "none"}}>
-                    <Link to="/" onClick={() => setActiveScreen("Home")}>Home</Link>
-                    {/*token ?
-						<div>
-							{isAdmin == 'T' ?
-							<Link to="/Filters" element = {<Filters classInfo={classInfo}/>}/>
-							:<Link to="/Profile" element = {Profile}/>
-							}
-						</div>
-						: <Link to="/Auth" element = {Auth}/>
-					*/}
-                    <Link to="/Profile" onClick={() => setActiveScreen("Profile")}>Profile</Link>
-                    <Link to="/Filters" onClick={() => setActiveScreen("Filters")}>Filters</Link>
-					<Link to="/Auth" onClick={() => setActiveScreen("Auth")}>Auth</Link>
-					<Link to="/NoPage" onClick={() => setActiveScreen("NoPage")}>NoPage</Link>
-                </section>
-                <section style = {styles.logo}>
-                    {/*<img style = {styles.img} alt="logo" src={Logo} />*/}
-                    Sample Full Stack 1
-                </section>
+            <nav id="nav">
+                <img width="25%" alt="Logo made on wix.com" src={Logo}/>
+                {/*rgb(164, 116, 127) = #A4747F  rgb(140, 166, 162) = #8CA6A2*/}
+                <Link className="route" onMouseEnter={e => e.currentTarget.style.color = "rgb(164, 116, 127)"} onMouseLeave={e => e.currentTarget.style.color = "rgb(255, 255, 255)"} to="/">Home</Link>
+                {/*token ?
+					<div>
+						{isAdmin == 'T' ?
+						<Link to="/StudentList" element = {<StudentList classInfo={classInfo}/>}/>
+						:<Link to="/Profile" element = {Profile}/>
+						}
+					</div>
+					: <Link to="/Auth" element = {Auth}/>
+				*/}
+                <Link className="route" onMouseEnter={e => e.currentTarget.style.color = "rgb(140, 166, 162)"} onMouseLeave={e => e.currentTarget.style.color = "rgb(255, 255, 255)"} to="/Profile">Profile</Link>
+                <Link className="route"  onMouseEnter={e => e.currentTarget.style.color = "rgb(164, 116, 127)"} onMouseLeave={e => e.currentTarget.style.color = "rgb(255, 255, 255)"} to="/StudentList">StudentList</Link>
+				<Link className="route" onMouseEnter={e => e.currentTarget.style.color = "rgb(140, 166, 162)"} onMouseLeave={e => e.currentTarget.style.color = "rgb(255, 255, 255)"} to="/Auth">Sign In</Link>
             </nav>
             <Outlet/>
         </>
@@ -40,30 +39,3 @@ const SideBar = () => {
 }
 
 export default SideBar;
-
-const styles = {
-	nav: {
-		display: "flex",
-		flexDirection: "row",
-		backgroundColor: "#444",
-		borderBottom: "0.15em solid #fff",
-		fontWeight: "300"
-	},
-    logo: {
-		display: "flex",
-		justifyContent: "center",
-		marginTop: "20px",
-		marginBottom: "10px"
-	},
-    dropdownContainer: {
-        flexDirection: "column",
-        border: "0.15em solid #fff",
-    },
-    additionalButtonStyles: {
-        padding: "0.5em",
-        backgroundColor: "#fff",
-        color: "#000",
-        borderRadius: "0.25em"
-    }
-
-}

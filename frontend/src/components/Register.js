@@ -10,7 +10,7 @@ import {useNavigate} from 'react-router-dom';
 
 const Register = () => {
     const dispatch = useDispatch();
-    const {loading, errors} = useSelector(state => state.user);
+    const {isLoading, errors} = useSelector(state => state.user);
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -21,7 +21,7 @@ const Register = () => {
     const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
     const SubmitRegistration = () => {
-        if(!loading) { 
+        if(!isLoading) { 
             dispatch(SignUp({firstName: firstName, lastName: lastName, email: email.toLowerCase(), passsword: password}));
             navigate("/Auth");
         }

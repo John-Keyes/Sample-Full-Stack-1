@@ -32,16 +32,15 @@ module.exports = (env) => {
                   }
                 }
               },
-              //css
+              //loading styles
               {
-                test: /\.css$/i,
-                use: ["style-loader", "css-loader"]
+                test: /\.(sa|sc|c)ss$/i,
+                use: ["style-loader", "css-loader", "sass-loader"]
               },
               //images to load
               {
-                test: /\.(png|jp(e*)g|svg|gif)$/, 
+                test: /\.(png|jp(e*)g|svg|gif)$/,
                 type: "asset/resource",
-                options: {limit: 8192}
                 //use: "file-loader?name=./images/"
               },
               //svg as component

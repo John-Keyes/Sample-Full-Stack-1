@@ -9,6 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   max-width: "100vw";
   max-height: "100vh";
+  /*overflow: hidden;*/
 }
 
 .custom-scrollbars__content {
@@ -45,8 +46,9 @@ body {
 }
 */
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  /*font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;*/
+  font-family: American Typewriter, serif
 }
 
 /*[contentEditable]:empty:not(:focus):before {
@@ -55,8 +57,8 @@ code {
 
 .buttonText {
   font-weight: bold;
-  padding: 5;
-  font-size: 1em;
+  padding: "2.5%";
+  font-size: 1.75vw;
 }
 
 .formContainer {
@@ -99,6 +101,6 @@ code {
 
 .feedBack {
   margin-top: 5; 
-  font-size: 13; 
+  font-size: 1vw; 
   color: "red";
 }

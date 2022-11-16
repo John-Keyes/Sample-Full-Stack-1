@@ -5,6 +5,7 @@
   - React
   - Redux
   - Node
+  - Scss
  
 # RDMS
   - MySQL

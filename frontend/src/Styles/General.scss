@@ -1,0 +1,60 @@
+/*mixins are reusable css blocks that can be used in any scss file
+
+Across all scss files, we can use mixins, variables and functions
+*/
+@mixin flexRowView {
+    display: flex; 
+    flex-direction: row;
+}
+
+@mixin hoverColor1 {
+    &:hover {
+        color: #A4747F;
+    }
+}
+
+@mixin hoverColor2 {
+    &:hover {
+        color: #5E718C;
+    }
+}
+
+@mixin hoverColor3 {
+    &:hover {
+        color: #8CA6A2;
+    }
+}
+
+.flexRow {
+    @include flexRowView;
+}
+
+.isButton {
+    text-align: center;
+    &:hover {
+        cursor: pointer;
+        transform: translateX(10px), translateY(10px), translateZ(10px);
+        box-shadow: 2px 3px 3px #000;
+    }
+    &:active {
+        background-color: #fff;
+    }
+}
+
+
+/*
+@function HoverText($colorNum) {
+    $HoverColorMap: map-get((
+        
+            1: #5E718C,
+            2: #A4747F,
+            3: #8CA6A2,
+        
+    ), $colorNum);
+
+    &:hover {
+        color:hover
+    }
+}
+*/
+    

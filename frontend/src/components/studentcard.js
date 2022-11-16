@@ -19,7 +19,7 @@ const StudentCard = ({studentInfo}) => {
         return false;
     }*/
     return (
-        <div style={styles.container}>
+        <div style={container}>
             <img alt={studentInfo.firstName} src={studentInfo.pic} style={{width: "20%"}}/>
             <div style={{width: "60%"}}>
                 <div style={{textAlign: "center"}}>
@@ -61,8 +61,8 @@ const StudentCard = ({studentInfo}) => {
 
 export default StudentCard;
 
-const styles = {
-    container: {
+
+    const container = {
         justifyContent: "space-around", 
         display: "flex", 
         flexDirection: "row", 
@@ -71,6 +71,5 @@ const styles = {
         backgroundColor: "#444",
         borderRadius: "1.5em",
         margin: "5%"
-    },
-};
+    };
 

@@ -1,8 +1,9 @@
 import React from 'react';
+import "../Styles/General.scss";
 
-const Button = ({additionalButtonStyles, toggle}) => {
+const Button = ({additionalButtonStyles, toggle, text}) => {
     return (
-        <div style={{justifyContent: "center", textAlign: "center", additionalButtonStyles}} onMouseEnter={(e) => console.log(e.currentTarget.style)} onMouseLeave={(e) => console.log(e.currentTarget.style)} onClick={() => toggle}>
+        <div className="isButton" style={additionalButtonStyles} onClick={() => toggle()}>{text}
         </div>
     );
 }

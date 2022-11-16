@@ -1,0 +1,96 @@
+@use "../General" as *;
+
+
+@mixin subTitleText {
+    font-size: 4vw;
+    text-align: center;
+}
+
+@mixin homeParagraph {
+    font-size: 2vw;
+    padding-top: 2%; 
+    padding-bottom: 3%; 
+    /*margin-right: 25%;*/
+}
+
+@mixin commonTextStyles {
+    text-decoration: none;  
+    color: #fff;
+}
+
+.homeWrapper {
+    font-weight: bold;
+    /*overflow-y: scroll;*/
+}
+
+.title {
+    font-size: 6vw; 
+}
+
+#welcomeSection {
+    background-color: #444;
+    /*width: 100%;*/
+    @include flexRowView;
+    justify-content: space-around;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+#linkContainer {
+    text-decoration: none;
+    font-size: 2.5vw;
+    margin-top: 3.5%;
+}
+.hoverLink1 {
+    @include commonTextStyles;
+    @include hoverColor1;
+}
+
+.hoverLink2 {
+    @include commonTextStyles;
+    @include hoverColor2;
+}
+
+.hoverLink3 {
+    @include commonTextStyles;
+    @include hoverColor3;
+}
+
+#contactTitle {
+    color: #8CA6A2; 
+    @include subTitleText;
+}
+
+#aboutTitle {
+    color: #A4747F; 
+    @include subTitleText;
+}
+.aboutContent {
+    @include flexRowView;
+    justify-content: space-around;
+}
+.aboutPara {
+    @include homeParagraph;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: #000;
+}
+.centerButton {
+    justify-content: center;
+    margin-bottom: 5%;
+    margin-top: 5%
+}
+#contactPara {
+    @include homeParagraph;
+    @include flexRowView;
+    margin-left: 35%;
+    margin-right: 35%;
+    color:#fff;
+}
+#aboutSection {
+    height: 50%;
+    background-color: #fff;
+}
+#contactSection {
+    height: 50%;
+    background-color: #333;
+}

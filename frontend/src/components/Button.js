@@ -1,9 +1,9 @@
 import React from 'react';
 import "../Styles/General.scss";
 
-const Button = ({additionalButtonStyles, toggle, text}) => {
+const Button = ({additionalClassNames, toggle, text}) => {
     return (
-        <div className="isButton" style={additionalButtonStyles} onClick={() => toggle()}>{text}
+        <div className={`isButton  ${additionalClassNames}`} onClick={() => toggle()}>{text}
         </div>
     );
 }

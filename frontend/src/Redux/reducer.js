@@ -1,6 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {deleteToken} from '../Global/Token';
-import {SignUp, SaveProfile} from './actions';
+import {SignUp, SaveProfile, Logout} from './actions';
 
 /*
 authInfo possible attributes:
@@ -19,16 +18,12 @@ authInfo possible attributes:
 
 */
 
-const initialAuthState = {authInfo: null, error: null, isLoading: false, success: false};
 
 const Authorization = createSlice({
     name: "auth",
-    initialState: initialAuthState,
+    initialState: {authInfo: null, error: null, isLoading: false, success: false},
     reducers: {
-        logout: state => {
-            state = initialAuthState;
-            deleteToken();
-        }
+        LogOut: () => Logout
     },
     //Asynchronous actions handled here.
     extraReducers: {
@@ -57,4 +52,5 @@ const Authorization = createSlice({
     }
 });
 
+export const {LogOut} = Authorization.actions;
 export default Authorization.reducer;

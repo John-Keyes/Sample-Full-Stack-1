@@ -101,7 +101,7 @@ const ProfileSettings = () => {
                 left={grades.map(grade => <Button><span className="buttonText">{grade}</span></Button>)}
                 right={() => <svg xmlns="http://www.w3.org/2000/svg" onClick={AddGrade()} height="20" width="20"><path d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6Z"/></svg>}
             />
-            <Button additionalButtonStyles={{backgroundColor: "blue"}} toggle={() => SaveProfile("PUT", `update/${payload.studentID}`, {country: currentCountry, state: currentState, city: currentCity, company: company, grades: grades, skills: skills}, setErrors)}>
+            <Button toggle={() => SaveProfile("PUT", `update/${payload.studentID}`, {country: currentCountry, state: currentState, city: currentCity, company: company, grades: grades, skills: skills}, setErrors)}>
                 <span className="buttonText">Save</span>
             </Button>
         </div>

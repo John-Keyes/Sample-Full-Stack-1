@@ -10,18 +10,21 @@ Across all scss files, we can use mixins, variables and functions
 @mixin hoverColor1 {
     &:hover {
         color: #A4747F;
+        fill: #A4747F;
     }
 }
 
 @mixin hoverColor2 {
     &:hover {
         color: #5E718C;
+        fill: #5E718C;
     }
 }
 
 @mixin hoverColor3 {
     &:hover {
         color: #8CA6A2;
+        fill: #8CA6A2;
     }
 }
 
@@ -36,10 +39,20 @@ Across all scss files, we can use mixins, variables and functions
         transform: translateX(10px), translateY(10px), translateZ(10px);
         box-shadow: 2px 3px 3px #000;
     }
-    &:active {
-        background-color: #fff;
-    }
+    /*&:active {
+        background-color: #;
+    }*/
 }
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
 
 
 /*

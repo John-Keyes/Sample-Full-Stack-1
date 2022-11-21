@@ -1,5 +1,11 @@
 import {getToken, setToken} from "../Global/Token";
 import {createAsyncThunk} from '@reduxjs/toolkit';
+import {deleteToken} from '../Global/Token';
+
+    export const Logout = state => {
+        state = {authInfo: null, error: null, isLoading: false, success: false};
+        deleteToken();
+    }
 
     export const SignUp = createAsyncThunk("Register", async (bodyObject, {rejectWithValue, fulfillWithValue}) => {
             await fetch("HOST/students/register", {

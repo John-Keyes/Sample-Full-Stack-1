@@ -29,7 +29,6 @@
 
 #welcomeSection {
     background-color: #444;
-    /*width: 100%;*/
     @include flexRowView;
     justify-content: space-around;
     padding-top: 5%;
@@ -74,17 +73,21 @@
     margin-right: 5%;
     color: #000;
 }
-.centerButton {
-    justify-content: center;
+.joinButton {
+    margin-left: 40%; 
+    background-color: #5E718C; 
+    width: 20%; 
+    padding: 2%;
     margin-bottom: 5%;
     margin-top: 5%
 }
 #contactPara {
     @include homeParagraph;
     @include flexRowView;
-    margin-left: 35%;
-    margin-right: 35%;
-    color:#fff;
+    margin-left: 22.5%;
+    margin-right: 22.5%;
+    fill: #fff;
+
 }
 #aboutSection {
     height: 50%;
@@ -93,4 +96,8 @@
 #contactSection {
     height: 50%;
     background-color: #333;
+}
+
+svg {
+    fill:#fff
 }

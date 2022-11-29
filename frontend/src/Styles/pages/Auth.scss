@@ -1,28 +1,25 @@
-@mixin tabp {
+.tabp {
     padding: 5%;
     text-align: center;
     cursor: pointer;
 }
-#tabp1 {
-    @include tabp;
-    /*border-bottom: 2px solid #fff; 
-    color: #fff;*/
-}
-#tabp2 {
-    @include tabp;
-    /*border-bottom: 2px solid #999; 
-    color: #999;*/
-}
 #authContainer {
-    /*border-top-left-radius: 5%;
-    border-top-right-radius: 5%;*/
     justify-content: center; 
     align-items: center; 
     background-color: #333;
-    margin: 2.5%;
+    margin: 10%;
 }
 .tableFix {
     margin-bottom: 2%;
     table-layout: fixed;
     width: 100%;
+}
+
+.signButton {
+    margin-left: 40%; 
+    background-color: #5E718C; 
+    width: 20%; 
+    padding: 2%;
+    margin-bottom: 5%;
+    margin-top: 5%;
 }

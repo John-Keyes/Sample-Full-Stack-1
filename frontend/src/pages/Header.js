@@ -25,12 +25,10 @@ const Header = () => {
                     <Link className="routeType1" to="/Auth">Sign In</Link> : 
                     <div id="headerDropDownContainer">
                         <div id="headerDropDownTitle" onClick={() => setDropDownOpen(!dropDownOpen)}>{authInfo?.firstName} v (Fix icon sizing)</div>
-                        {/*authInfo?.firstName ?*/}
                         <div id="headerDropDownBody">
                             <Link className="routeType2" to="/Profile">Profile</Link>
                             <div className="routeType1" onClick={() => dispatch(LogOut())}>Sign Out</div>
                         </div>
-                        {/*}: null*/}
                     </div>
                 }
             </nav>

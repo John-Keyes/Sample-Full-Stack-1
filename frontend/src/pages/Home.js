@@ -3,10 +3,10 @@ import "../Styles/pages/Home.scss";
 import "../Styles/General.scss";
 import Button from '../components/Button';
 //import LogoShape from '../images/logoshape.png';
-//import {useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const Home = () => {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     return (
         <div className="homeWrapper">
             <div id="welcomeSection">
@@ -37,7 +37,7 @@ const Home = () => {
                         If you want to try my user services, please click the "Join" button.
                     </div>
                 </div>
-                <Button additionalClassNames={"joinButton"} toggle={() => window.location.href = "/Auth"} text={<span className="buttonText">Join</span>}/>
+                <Button additionalClassNames={"joinButton"} toggle={() => navigate("/Auth")} text={<span className="buttonText">Join</span>}/>
             </div>
             <div id="contactSection">
                 <div id="contactTitle">Contact Me</div>

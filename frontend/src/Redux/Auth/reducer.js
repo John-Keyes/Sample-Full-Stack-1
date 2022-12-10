@@ -19,33 +19,39 @@ authInfo possible attributes:
 
 const Authorization = createSlice({
     name: "auth",
-    initialState: {authInfo: null, error: null, isLoading: false, success: false},
+    initialState: {authInfo: null, errors: {firstName: [], lastName: [], email: [], password: []}, isLoading: false, success: false},
     reducers: {
         LogOut: state => Logout(state)
     },
     //Asynchronous actions handled here.
     extraReducers: {
-        [SignUp.pending]: state => state.isLoading = true,
+        [SignUp.pending]: state => {
+            state.isLoading = true
+        },
         [SignUp.fulfilled]: (state, payload) => {
             state.isLoading = false;
             state.success = true;
+            state.errors = null;
             state.authInfo = payload;
         },
         [SignUp.rejected]: (state, payload) => {
             state.isLoading = false;
             state.success = false;
-            state.error = payload;
+            state.errors = payload;
         },
-        [SaveProfile.pending]: state => state.isLoading = true,
+        [SaveProfile.pending]: state => {
+            state.isLoading = true
+        },
         [SaveProfile.fulfilled]: (state, payload) => {
             state.isLoading = false;
             state.success = true;
+            state.errors = null;
             state.authInfo = payload;
         },
         [SaveProfile.rejected]: (state, payload) => {
             state.isLoading = false;
             state.success = false;
-            state.error = payload;
+            state.errors = payload;
         }
     }
 });

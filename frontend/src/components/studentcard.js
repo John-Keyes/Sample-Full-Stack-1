@@ -42,7 +42,7 @@ const StudentCard = ({studentInfo}) => {
                 <form style={{justifyContent: "center", display: "flex"}} onSubmit={() => AddTag()}>
                     <div style={{marginRight: "1%"}}>
                         <CustomTextInput 
-                            borderType={'u'} 
+                            borderType={"underlineBorder"} 
                             id={"taginput"} 
                             title={"Tag Name"} 
                             placeholder={"List tag"} 

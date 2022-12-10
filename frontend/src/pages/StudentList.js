@@ -29,7 +29,7 @@ const StudentList = ({classInfo}) => {
         <div style={GlobalStyles.contentContainer}>
             <CustomTextInput 
                 inputType={"text"} 
-                borderType={'r'} 
+                borderType={"roundBorder"} 
                 id={"namesearch"} 
                 placeholder={"Search by name"} 
                 value={name} 
@@ -55,7 +55,7 @@ const StudentList = ({classInfo}) => {
                     );
                 }}
             />
-            {/*<CustomTextInput borderType={'r'} id={"tagsearch"} placeholder={"Search by tag"} value={tag} setValue={setTag}/>*/}
+            {/*<CustomTextInput borderType={"roundBorder"} id={"tagsearch"} placeholder={"Search by tag"} value={tag} setValue={setTag}/>*/}
             <div style={GlobalStyles.listView}>
                 {/*classInfo.filter(studentInfo => FilterCondition(studentInfo)).map(studentInfo => {
                     return <StudentCard key={studentInfo.id} studentInfo={studentInfo}/>;

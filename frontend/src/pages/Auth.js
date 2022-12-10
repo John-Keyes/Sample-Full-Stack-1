@@ -10,16 +10,16 @@ const Auth = () => {
 
     useEffect(() => navigate(currentTab), [navigate, currentTab]);
 
-    const SwitchTabFrom1 = () => {
+    const SwitchTabTo1 = () => {
         setAuthTabColor1("#fff"); 
         setAuthTabColor2("#999");
-        setCurrentTab("Register"); 
+        setCurrentTab("Login"); 
     };
 
-    const SwitchTabFrom2 = () => {
+    const SwitchTabTo2 = () => {
         setAuthTabColor1("#999"); 
         setAuthTabColor2("#fff");
-        setCurrentTab("Login"); 
+        setCurrentTab("Register"); 
     };
 
     return (
@@ -27,8 +27,8 @@ const Auth = () => {
             <table className="tableFix">
                 <tbody>
                     <tr>
-                        <td><div className="tabp" style={{borderBottom: `2px solid ${authTabColor1}`, color: authTabColor1}} onClick={() => SwitchTabFrom1()}>Log In</div></td>
-                        <td><div className="tabp" style={{borderBottom: `2px solid ${authTabColor2}`, color: authTabColor2}} onClick={() => SwitchTabFrom2()}>Register</div></td>
+                        <td><div className="tabp" style={{borderBottom: `2px solid ${authTabColor1}`, color: authTabColor1}} onClick={() => SwitchTabTo1()}>Log In</div></td>
+                        <td><div className="tabp" style={{borderBottom: `2px solid ${authTabColor2}`, color: authTabColor2}} onClick={() => SwitchTabTo2()}>Register</div></td>
                     </tr>
                 </tbody>
             </table>

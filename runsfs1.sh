@@ -22,3 +22,4 @@ case "$OSTYPE" in
     ;;
     "freebsd")
     ;;
+esac

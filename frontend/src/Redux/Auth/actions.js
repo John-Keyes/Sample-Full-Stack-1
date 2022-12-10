@@ -1,6 +1,5 @@
-import {getToken, setToken} from "../Global/Token";
+import {getToken, setToken, deleteToken} from "../../Global/Token";
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {deleteToken} from '../Global/Token';
 
     export const Logout = state => {
         state = {authInfo: null, error: null, isLoading: false, success: false};
@@ -33,10 +32,8 @@ import {deleteToken} from '../Global/Token';
                         setToken(res.data.token);
                         return fulfillWithValue(res.data);
                     case 410:
-                        alert(res.error);
                         return rejectWithValue({email: res.error});
                     case 415:
-                        alert(res.error);
                         return rejectWithValue({password: res.error});
                     default:
                         return rejectWithValue({other: res.error});

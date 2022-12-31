@@ -15,7 +15,6 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [secureTextEntry, setSecureTextEntry] = useState(true);
     
-    
     const SubmitRegistration = () => {
         if(!isLoading) { 
             dispatch(SignUp({firstName: firstName, lastName: lastName, email: email.toLowerCase(), passsword: password}));
@@ -24,6 +23,7 @@ const Register = () => {
             }
         }
     }
+    
     return (
         <div className="formContainer">
             <CustomTextInput 

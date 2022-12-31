@@ -1,9 +1,53 @@
-.tabp {
+@mixin tabp {
     padding: 5%;
     text-align: center;
     cursor: pointer;
     font-weight: bold;
     font-size: 3vw;
+}
+$authTabColor1: #fff;
+$authTabColor2: #999;
+
+/*@function TabInteractions($mainColor, $effectColor) {
+    @return 
+        border-bottom: 2px solid $authTabColor1;
+        color: $authTabColor1;
+        &:focus {
+            $authTabColor1: #fff;
+            $authTabColor2: #999;
+        }
+        &:hover {
+            color: #5E718C;
+            border-bottom-color: #5E718C;
+        }
+    ;
+}*/
+
+#tabp1 {
+    @include tabp;
+    border-bottom: 2px solid $authTabColor1;
+    color: $authTabColor1;
+    &:focus {
+        $authTabColor1: #fff;
+        $authTabColor2: #999;
+    }
+    &:hover {
+        color: #5E718C;
+        border-bottom-color: #5E718C;
+    }
+}
+#tabp2 {
+    @include tabp;
+    color: $authTabColor2;
+    border-bottom: 2px solid $authTabColor2;
+    &:focus {
+        $authTabColor1: #999;
+        $authTabColor2: #fff;
+    }
+    &:hover {
+        color: #A4747F;
+        border-bottom-color: #A4747F;
+    }
 }
 #authContainer {
     justify-content: center; 

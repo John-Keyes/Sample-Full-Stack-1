@@ -1,7 +1,7 @@
 const db = require("../config/dbConnection.js");
 const {hashSync, genSaltSync, compareSync} = require("bcrypt");
 const {sign, verify} = require("jsonwebtoken");
-const {UpdateSetBody} = require("../Helpers/auth");
+const {UpdateSetBody, SendEmail} = require("../Helpers/auth");
 
 module.exports = {
   checkToken: (req, res, next) => {
@@ -35,10 +35,14 @@ module.exports = {
   create: async (req, res) => {
     let isAdmin = req.body.password == process.env.ADMIN_PWD ? 'T' : 'F';
     let aHash = hashSync(req.body.password, genSaltSync(10));
-    req.body.password = aHash + aHash;
+    //req.body.password = aHash + aHash;
     //SELECT studentID FROM Students WHERE email='${req.body.email}'; 
-    const studentIDRes = await db.promise().query(`INSERT INTO Students(studentID, email, password, firstName, lastName, isAdmin) OUTPUT Inserted.studentID VALUES (DEFAULT, ${req.body.email}, ${req.body.password}, ${req.body.firstName}, ${req.body.lastName}, ${isAdmin})`)
+    const studentIDRes = await db.promise().query(`INSERT INTO Students(studentID, email, password, firstName, lastName, isValidated, isAdmin) OUTPUT Inserted.studentID VALUES (DEFAULT, ${req.body.email}, ${aHash + aHash}, ${req.body.firstName}, ${req.body.lastName}, NULL, ${isAdmin})`)
     .catch(() => res.status(500).json({message: "Error 500: Internal Server Error."}));
+    const emailRes = await SendEmail(req.body.email);
+    if (!emailRes) {
+      return res.status(464).json({message: "Account not Verified, check your email for an access code"});
+    }
     return res.status(200).json({studentID: studentIDRes[0].studentID});
     //const studentIDRes = await db.promise().query("SELECT studentID FROM Students");
   },
@@ -47,6 +51,9 @@ module.exports = {
     .catch(() => res.status(500).json({message: "Error 500: Internal Server Error."}));
     if(!student[0]) {
       return res.status(410).json({message: "Error 410: Invalid email"});
+    }
+    if(!student[0].isValidated) {
+      return res.status(464).json({message: "Account not Verified."});
     }
     if(!compareSync(req.body.password, student[0].password)) {
       return res.status(415).json({message: " Error 415: Invalid password"});
@@ -59,9 +66,6 @@ module.exports = {
       return res.status(200).json({message: "Login successful", data: jwt});
     }*/
   },
-  /*loginMount: async (req, res) => {
-
-  },*/
   update: async (req, res) => {
     let updateQueryChangedVars = "";
     const studentID = req.params.studentID;

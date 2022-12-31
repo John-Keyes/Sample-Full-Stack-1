@@ -11,6 +11,7 @@ CREATE TABLE `Students` (
 	`lastName` VARCHAR(32) NOT NULL,
 	`average` VARCHAR(32),
 	`pic` TEXT NOT NULL,
+	`isVerified` CHAR(1) NOT NULL,
 	`isAdmin` CHAR(1) NOT NULL,
 	PRIMARY KEY (`studentID`) USING BTREE
 ) ENGINE=InnoDB CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

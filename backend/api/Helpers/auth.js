@@ -1,5 +1,39 @@
 const {Average} = require("./calculations.js");
+const nodemailer = require("nodemailer");
+
+const Average = arr => {
+  let sum = 0;
+  arr.forEach(grade => sum += grade); 
+  return sum / arr.length;
+}
+
 module.exports = {
+      SendEmail: async (email) => {
+        //let service = GetService(email);
+        const mailNetwork = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: process.env.emailUser,
+                pass: process.env.emailPwd
+            }
+        });
+
+        const options = {
+            //from: "",
+            to: email,
+            subject: "SFS1 - Confirm your Account.",
+            html: "<a href=http://localhost:3030/Auth/Validation ><h1>Confirm your account</h1></a>"
+        }
+
+        return mailNetwork.sendMail(options, (error, info) => {
+            if(error) {
+                console.log(error);
+                return false;
+            }
+            console.log(info.response);
+            return true;
+        });
+    },
     UpdateListTable: async (array, tableName, attribute, studentID) => {
         const getAttributesofID = await db.promise().query(`SELECT ${attribute} FROM ${tableName} WHERE studentID='${studentID}'`);
         const attributesOfID = await Promise.all(getAttributesofID.map(async student => {

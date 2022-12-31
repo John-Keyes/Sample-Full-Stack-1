@@ -15,11 +15,14 @@ module.exports = (env) => {
         devServer: {
           compress: true,
           port: 3030,
+          //server: "https",
+          proxy: {
+            "/api": {
+              target: env.HOST,
+              pathRewrite: { "^/api": '' },
+            },
+          }
         },
-        /*resolver: {
-            extensions: ['jsx', 'js', 'ts', 'tsx']
-            test: /\.?(js|jsx|ts|tsx)$/, /\.?(js)$/, (j|t)(s|sx)
-        },*/
         module: {
             rules: [
               {

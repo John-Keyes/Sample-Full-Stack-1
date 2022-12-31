@@ -17,8 +17,10 @@ const [errors, setErrors] = useState([]);
                 <input className="formInput" type={inputType} placeholder={placeholder} name={name} id={id} value={value} onChange={(e) => HandleOnChange(e.target.value)}/>
                 {right}
             </div>
-            {errors.map((error, index) => <div key={index} className="feedBack">{error}</div>)}
-            {apiErrors.map((error, index) => <div key={index} className="feedBack">{error}</div>)}
+            <div className="feedBack">
+                {errors.map((error, index) => <div key={index}>{error}</div>)}
+                {apiErrors.map((error, index) => <div key={index}>{error}</div>)}
+            </div>
         </div>
     );
 }

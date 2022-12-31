@@ -59,6 +59,7 @@ code {
   font-weight: bold;
   padding: "2.5%";
   font-size: 1.75vw;
+  color: #fff;
 }
 
 .formContainer {
@@ -89,6 +90,11 @@ code {
 .formInput:focus {
   outline: none;
 }
+.formInput[type = "password"]::-ms-reveal,
+.formInput[type = "password"]::-ms-clear
+{
+  display: none;
+}
 
 .underlineBorder {
   border-bottom: 0.15em solid #fff;
@@ -102,5 +108,5 @@ code {
 .feedBack {
   margin-top: 5; 
   font-size: 1vw; 
-  color: "red";
+  color: red;
 }

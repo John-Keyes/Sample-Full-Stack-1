@@ -7,7 +7,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
     }
 
     export const SignUp = createAsyncThunk("Register", async (bodyObject, {rejectWithValue, fulfillWithValue}) => {
-            await fetch("HOST/students/register", {
+            await fetch("HOST/Auth/Register", {
                 method: "POST", 
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(bodyObject)
@@ -22,7 +22,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 
     export const SaveProfile = createAsyncThunk("SaveProfile", async (theMethod, endPoint, bodyObject, {rejectWithValue, fulfillWithValue}) => {
             const token = getToken();
-            await fetch(`HOST/students/${endPoint}`, {
+            await fetch(`HOST/Auth/${endPoint}`, {
                 method: theMethod, 
                 headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
                 body: JSON.stringify(bodyObject)
